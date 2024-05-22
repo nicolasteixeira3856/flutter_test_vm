@@ -7,7 +7,7 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home Page'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             TextField(
@@ -37,13 +37,13 @@ class _HomePageState extends State<HomePage> {
                   FocusManager.instance.primaryFocus?.unfocus();
                   context.pushNamed(NamedRoutes.randomNumbers, extra: quantity);
                   _controller.text = '';
-                } else {
-                  Fluttertoast.showToast(
-                    msg: 'Preencha o campo com um número válido',
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                  );
+                  return;
                 }
+                Fluttertoast.showToast(
+                  msg: 'Preencha o campo com um número válido',
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                );
               },
               child: const Text('Solicitar números'),
             ),

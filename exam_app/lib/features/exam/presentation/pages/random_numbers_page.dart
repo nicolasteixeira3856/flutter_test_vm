@@ -39,6 +39,7 @@ class RandomNumbersPage extends StatelessWidget {
               case const (ExamLoaded):
                 final loadedState = state as ExamLoaded;
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
                       child: ReorderableListView(
@@ -71,13 +72,17 @@ class RandomNumbersPage extends StatelessWidget {
                       onPressed: () {
                         context.pop();
                       },
-                      child: const Text('Recomeçar'),
+                      child: const Text('Solicitar novos números'),
                     ),
                   ],
                 );
               case const (ExamError):
                 final errorState = state as ExamError;
-                return Center(child: Text(errorState.message));
+                return Center(
+                    child: Text(
+                  errorState.message,
+                  textAlign: TextAlign.center,
+                ));
               default:
                 return const Center(
                     child: Text('Ocorreu um erro ao acesar a tela.'));

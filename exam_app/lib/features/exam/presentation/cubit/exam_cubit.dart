@@ -30,6 +30,11 @@ class ExamCubit extends Cubit<ExamState> {
       final numberList = await getRandomNumbersUseCase(quantity);
       emit(ExamLoaded(numbers: numberList.numbers, isInOrder: null));
     } catch (e) {
+      if (e.toString().contains(
+          'ClientException with SocketException: Connection refused')) {
+        emit(ExamError('Falha de conexão, verifique se a API está rodando e a URL no arquivo .env e tente novamente.'));
+        return;
+      }
       emit(ExamError(e.toString()));
     }
   }

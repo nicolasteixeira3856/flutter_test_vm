@@ -21,8 +21,4 @@ void initializeDependencyInjection() {
       () => GetRandomNumbersUseCaseImpl(repository: getIt<ExamRepository>()));
   getIt.registerFactory<CheckOrderUseCase>(
       () => CheckOrderUseCaseImpl(repository: getIt<ExamRepository>()));
-  /*getIt.registerFactory(() => ExamCubit(
-        getRandomNumbersUseCaseImpl: getIt<GetRandomNumbersUseCaseImpl>(),
-        checkOrderUseCase: getIt<CheckOrderUseCaseImpl>(),
-      ));*/
 }
